@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
-// Jordan Comment
+// Trinidad
 namespace tableTopHelp
 {
     public partial class App : Application
