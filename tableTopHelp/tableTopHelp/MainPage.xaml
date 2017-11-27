@@ -2,12 +2,37 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:tableTopHelp"
-             x:Class="tableTopHelp.MainPage">
+             x:Class="tableTopHelp.MainPage"
+   Title="Testing...">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <!-- main StackLayout for Screen -->
+        <StackLayout HorizontalOptions="CenterAndExpand">
+            <!-- Grid for horizontal buttons -->
+            <Grid>
+                <!-- Column definitions, set width to dynamic w/ fill -->
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"/>                
+                  <ColumnDefinition Width="*"/>              
+                 </Grid.ColumnDefinitions>
+                <!-- Create Champion button -->
+                <Button Grid.Column ="0" x:Name="createChampButt"
+                 Text="Create Champion"/>
+                <!-- Remove Champion button -->
+                <Button Grid.Column="1" x:Name="deleteChampButt"
+                 Text="Delete Champion" />
+             </Grid>
+            <!-- StackLayout for list of Champions -->
+             <StackLayout VerticalOptions="Center" Padding="10" Spacing="50">
+                 <Label  x:Name="championOne" Text="Brumal Lightborn"       
+                         TextColor="Aqua" 
+                         HorizontalOptions="Center"/>
+                <Label  x:Name="championTwo" Text="Magda, The Mother Confessor"         
+                         TextColor="Red"
+                        HorizontalOptions="Center"/>
+                <Label  x:Name="championThree" Text="Mufasa Dingred"         
+                         TextColor="Blue"
+                        HorizontalOptions="Center"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
