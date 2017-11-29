@@ -2,9 +2,16 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="tableTopHelp.App">
-	<Application.Resources>
-
-		<!-- Application resource dictionary -->
+	<Application.Resources>        
+            <ResourceDictionary>
+                <x:Boolean x:Key ="oneIsSelected">false</x:Boolean>
+                <x:Boolean x:Key ="twoIsSelected">false</x:Boolean>
+                <x:Boolean x:Key ="threeIsSelected">false</x:Boolean>
+                <x:Boolean x:Key ="fourIsSelected">false</x:Boolean>
+                <x:Boolean x:Key ="fiveIsSelected">false</x:Boolean>
+        </ResourceDictionary>
+        
+        <!-- Application resource dictionary -->
 
 	</Application.Resources>
 </Application>

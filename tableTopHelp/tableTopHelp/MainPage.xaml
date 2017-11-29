@@ -4,9 +4,12 @@
              xmlns:local="clr-namespace:tableTopHelp"
              x:Class="tableTopHelp.MainPage"
    Title="Testing...">
-    <ContentPage.Content>
-        <!-- main StackLayout for Screen -->
+   
+    <ContentPage.Content>   
+            
+         <!-- main StackLayout for Screen -->
         <StackLayout HorizontalOptions="CenterAndExpand">
+            
             <!-- Grid for horizontal buttons -->
             <Grid>
                 <!-- Column definitions, set width to dynamic w/ fill -->
@@ -23,15 +26,58 @@
              </Grid>
             <!-- StackLayout for list of Champions -->
              <StackLayout VerticalOptions="Center" Padding="10" Spacing="50">
-                 <Label  x:Name="championOne" Text="Brumal Lightborn"       
-                         TextColor="Aqua" 
+                <Grid RowSpacing="40">
+                    
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column ="0" Grid.Row="0" x:Name="selectChampOne"
+                         Text="Select"/>
+
+                    <Label Grid.Column="1" Grid.Row="0" x:Name="championOne"    
+                         TextColor="Black" 
+                         BackgroundColor="White"
+                         FontSize="Large"      
+                         Text="CHAMPION1 XAML STUB"
                          HorizontalOptions="Center"/>
-                <Label  x:Name="championTwo" Text="Magda, The Mother Confessor"         
-                         TextColor="Red"
+
+                    <Button Grid.Column ="0" Grid.Row="1" x:Name="selectChampTwo"
+                         Text="Select"/>
+                    <Label Grid.Column="1" Grid.Row="1" x:Name="championTwo"          
+                         TextColor="Black" 
+                         BackgroundColor="White"
+                         FontSize="Large"
+                        Text="CHAMPION2 XAML STUB"
                         HorizontalOptions="Center"/>
-                <Label  x:Name="championThree" Text="Mufasa Dingred"         
-                         TextColor="Blue"
+                    <Button Grid.Column ="0" Grid.Row="2" x:Name="selectChampThree"
+                         Text="Select"/>
+                    <Label Grid.Column="1" Grid.Row="2" x:Name="championThree"      
+                         TextColor="Black" 
+                         BackgroundColor="White"
+                         FontSize="Large"
+                        Text="CHAMPION3 XAML STUB"
                         HorizontalOptions="Center"/>
+
+                    <Button Grid.Column ="0" Grid.Row="3" x:Name="selectChampFour"
+                         Text="Select"/>
+                    <Label Grid.Column="1" Grid.Row="3" x:Name="championFour"
+                         TextColor="Black" 
+                         BackgroundColor="White"
+                         FontSize="Large"
+                        Text="CHAMPION4 XAML STUB"
+                        HorizontalOptions="Center"/>
+
+                    <Button Grid.Column ="0" Grid.Row="4" x:Name="selectChampFive"
+                         Text="Select"/>
+                    <Label Grid.Column="1" Grid.Row="4" x:Name="championFive"       
+                         TextColor="Black" 
+                         BackgroundColor="White"
+                         FontSize="Large"
+                        Text="CHAMPION5 XAML STUB"
+                        HorizontalOptions="Center"/>
+                </Grid>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

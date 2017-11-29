@@ -7,12 +7,14 @@ using Xamarin.Forms;
 // Trinidad
 namespace tableTopHelp
 {
+    
     public partial class App : Application
     {
+        
         public App()
         {
             InitializeComponent();
-
+            int testParentValue = 5; 
             MainPage = new tableTopHelp.MainPage();
         }
 
@@ -30,5 +32,7 @@ namespace tableTopHelp
         {
             // Handle when your app resumes
         }
+
+        
     }
 }
