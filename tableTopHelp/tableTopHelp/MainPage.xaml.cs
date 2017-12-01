@@ -13,7 +13,9 @@ namespace tableTopHelp
         public ChampionList championsList = new ChampionList();
         public Boolean createIsSelected = false,
                         deleteIsSelected = false;
-        
+        // Example champion
+        public App.Champion kelgen = new App.Champion();
+
         // This is the MOTHER FUCKING CONSTRUCTOR FOR MAINPAGE, NOT A RUN METHOD.... JORDAN... 3 HOURS LOST FOREVER!!!
         public MainPage()
         {
@@ -21,7 +23,7 @@ namespace tableTopHelp
             // Set BindingContext for this page to access buttons and labels from XAML
             BindingContext = this;
             
-
+           
             // Actions for "Create" button clicked
             if (championsList.numChampions == 5)
             {
@@ -66,7 +68,7 @@ namespace tableTopHelp
             public String[] races { get; set; }
             public Boolean[] isSelected { get; set; }
             public int numChampions { get; set; }
-
+            
             public ChampionList()
             {
                 names = new string[] { "Brumal Orc-Killer",
