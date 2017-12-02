@@ -40,27 +40,23 @@ namespace tableTopHelp
             }//end if
             
             
-                // create character actions
+             // create character actions
             createChampButt.Clicked += OnButtonCreateClicked;
-                // create mode, check select buttons               
+             // create mode, check select buttons               
            
 
-            //if (createChampButt.BackgroundColor.Equals(Color.Green))
-            //{
-           //     championsList.selectChampion(championsList.numChampions - 1);
-             //   DisplayAlert("Create Character", "What is the character's name?", "Submit");
-           // }
+          
 
 
             // Actions for "Delete" button clicked
             deleteChampButt.Clicked += OnButtonDeleteClicked;
 
             // Set label text to champion names
-            championOne.Text = championsList.championArray[0].name;
-            championTwo.Text = championsList.championArray[1].name;
-            championThree.Text = championsList.championArray[2].name;
-            championFour.Text = championsList.championArray[3].name;
-            championFive.Text = championsList.championArray[4].name;
+            championOne.Text = championsList.championArray[0].name + "\rLVL - " + championsList.championArray[0].level.ToString();
+            championTwo.Text = championsList.championArray[1].name + "\rLVL - " + championsList.championArray[1].level.ToString();
+            championThree.Text = championsList.championArray[2].name + "\rLVL - " + championsList.championArray[2].level.ToString();
+            championFour.Text = championsList.championArray[3].name + "\rLVL - " + championsList.championArray[3].level.ToString();
+            championFive.Text = championsList.championArray[4].name + "\rLVL - " + championsList.championArray[4].level.ToString();
 
             // Actions for "Select" button clicks, 1-5
             selectChampOne.Clicked += OnButtonOneClicked;
@@ -81,9 +77,9 @@ namespace tableTopHelp
             
             public ChampionList()
             {
-                championArray = new App.Champion[] { new App.Champion("Create New Character"), new App.Champion("Create New Character"),
-                                                     new App.Champion("Create New Character"), new App.Champion("Create New Character"),
-                                                    new App.Champion("Create New Character") };
+                championArray = new App.Champion[] { new App.Champion(), new App.Champion(),
+                                                     new App.Champion(), new App.Champion(),
+                                                    new App.Champion() };
                 temporaryChampion = new App.Champion();
            
                 length = championArray.Length;                
@@ -112,13 +108,17 @@ namespace tableTopHelp
 
             public void removeChampion(int index)
             {
+                // decrement number of champions
                 numChampions--;
-                championArray[index] = new App.Champion("Create New Character");
+                // add blank champion to list at removal location
+                championArray[index] = new App.Champion();
+                // sort array, pushing blanks down
                 for(int x = 0,y = 1; x < championArray.Length-1; x++, y++)
                 {
                     //compare each
                     if(championArray[x].name.Equals("Create New Character") && !championArray[y].name.Equals("Create New Character"))
                     {
+                        //exchange
                         temporaryChampion = championArray[y];
                         championArray[y] = championArray[x];
                         championArray[x] = temporaryChampion;
@@ -188,33 +188,43 @@ namespace tableTopHelp
             }
 
             // Set label text to champion names
-            championOne.Text = championsList.championArray[0].name;
-            championTwo.Text = championsList.championArray[1].name;
-            championThree.Text = championsList.championArray[2].name;
-            championFour.Text = championsList.championArray[3].name;
-            championFive.Text = championsList.championArray[4].name;
+            championOne.Text = championsList.championArray[0].name + "\rLVL - " + championsList.championArray[0].level.ToString();
+            championTwo.Text = championsList.championArray[1].name + "\rLVL - " + championsList.championArray[1].level.ToString();
+            championThree.Text = championsList.championArray[2].name + "\rLVL - " + championsList.championArray[2].level.ToString();
+            championFour.Text = championsList.championArray[3].name + "\rLVL - " + championsList.championArray[3].level.ToString();
+            championFive.Text = championsList.championArray[4].name + "\rLVL - " + championsList.championArray[4].level.ToString();
 
         }// end OnButtonCreateClicked
 
         // Delete
         async void OnButtonDeleteClicked(object sender, EventArgs e)
         {
+            // found champion escape boolean
             var deleteChampionFound = false;
+            // prompt response boolean
             var deleteResponse = false;
+            // index value of found champion
             var championDeleteIndex = -1;
 
-            
-
-            for(int i = 0; i < championsList.length; i++)
+            if (input.Text.Equals(""))
+                await DisplayAlert("Error", "You must type a champion name to be deleted.", "Ok.");
+            // search championArray
+            for (int i = 0; i < championsList.length; i++)
             {
+                
+                //try-catch for null input
                 try
                 {
+                    // "if champion isnt found, AND text at this spoke equals input, AND input isn't basic constructor name"
                     if(!deleteChampionFound && input.Text.Equals(championsList.championArray[i].name) &&
                                            !championsList.championArray[i].name.Equals("Create New Character"))
                     {
+                        // Prompt user to confirm champion delete by name, save response
                         deleteResponse = await DisplayAlert("Delete Champion", "Do you want to delete " + 
                                                   championsList.championArray[i].name + "?", "Yes", "No");
+                        // set found champion escale value
                         deleteChampionFound = true;
+                        // set found champion index for later reference
                         championDeleteIndex = i;
                     }
                 }
@@ -222,35 +232,52 @@ namespace tableTopHelp
                 catch
                 {
                     DisplayAlert("Error", "You must type a champion name to be deleted.", "Ok.");
+                    // escape for loop
                     i = championsList.length + 1;
-                    input.Text = null;
+                    input.Text = "";
                 }
             }
-
-            if(!deleteChampionFound && championDeleteIndex != -1)
+            // "if champion is not found, AND champion index isnt original number:
+            if(!deleteChampionFound && !input.Text.Equals(""))
             {
                 DisplayAlert("Error", "There is no champion named " + input.Text, "OK");
-                input.Text = null;
+                input.Text = "";
             }
            
-
+            // if user affirms deletion
             if (deleteResponse)
             {
+                // prompt for awareness
                 await DisplayAlert("Instructions", championsList.championArray[championDeleteIndex].name + 
                                                    " is about to be deleted.", "Ok");
+                // remove champion at found index
                 championsList.removeChampion(championDeleteIndex);
+                // reset create button, in case it was set to "full"
                 createChampButt.Text = "Create Champion";
                 createChampButt.Opacity = 1.0;   
-                input.Text = null;                         
-                
-
+                input.Text = "";                         
+            }
+            else
+            {
+                if (championsList.numChampions >= 5)
+                {
+                    createChampButt.Opacity = 0.25;
+                    createChampButt.Text = "List is Full";
+                    input.Text = "";
+                }
+                else
+                {
+                    createChampButt.Opacity = 1;
+                    createChampButt.Text = "Create Champion";
+                    input.Text = "";
+                }
             }
             // Set label text to champion names
-            championOne.Text = championsList.championArray[0].name;
-            championTwo.Text = championsList.championArray[1].name;
-            championThree.Text = championsList.championArray[2].name;
-            championFour.Text = championsList.championArray[3].name;
-            championFive.Text = championsList.championArray[4].name;
+            championOne.Text = championsList.championArray[0].name + "\rLVL - " + championsList.championArray[0].level.ToString();
+            championTwo.Text = championsList.championArray[1].name + "\rLVL - " + championsList.championArray[1].level.ToString();
+            championThree.Text = championsList.championArray[2].name + "\rLVL - " + championsList.championArray[2].level.ToString();
+            championFour.Text = championsList.championArray[3].name + "\rLVL - " + championsList.championArray[3].level.ToString();
+            championFive.Text = championsList.championArray[4].name + "\rLVL - " + championsList.championArray[4].level.ToString();
 
         }
         async void OnButtonOneClicked(object sender, EventArgs e)

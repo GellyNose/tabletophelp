@@ -25,10 +25,11 @@
                 <!-- Remove Champion button -->
                 <Button Grid.Column="1" x:Name="deleteChampButt"
                  Text="Delete Champion" />
+                <Entry Placeholder="Champion Name" Text ="" HorizontalOptions="FillAndExpand"  x:Name="input" Grid.ColumnSpan="2" Grid.Row="1"/>
              </Grid>
             <!-- StackLayout for list of Champions -->
              <StackLayout VerticalOptions="Center" Padding="10" Spacing="50">
-                <Entry Placeholder="Champion Name" HorizontalOptions="Center" x:Name="input"/>
+                
                  
                 <Grid RowSpacing="40">
                     

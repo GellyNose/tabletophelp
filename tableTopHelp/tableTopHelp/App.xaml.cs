@@ -116,7 +116,7 @@ namespace tableTopHelp
 
             public Champion()
             {
-
+                name = "Create New Character";
             }// public Champion()
 
             public Champion(String inputName)
