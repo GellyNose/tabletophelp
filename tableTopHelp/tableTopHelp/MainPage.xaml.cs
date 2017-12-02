@@ -14,7 +14,11 @@ namespace tableTopHelp
         public Boolean createIsSelected = false,
                         deleteIsSelected = false;
         // Example champion
-        public App.Champion kelgen = new App.Champion();
+        public App.Champion kelgen = new App.Champion("Kelgen");
+        public App.Champion brumal = new App.Champion("Brumal");
+        public App.Champion winter = new App.Champion("Winter Star");
+        public App.Champion mufasa = new App.Champion("Mufasa");
+        public App.Champion magda = new App.Champion("Magda");
 
         // This is the MOTHER FUCKING CONSTRUCTOR FOR MAINPAGE, NOT A RUN METHOD.... JORDAN... 3 HOURS LOST FOREVER!!!
         public MainPage()
@@ -28,7 +32,8 @@ namespace tableTopHelp
             if (championsList.numChampions == 5)
             {
                 // grey-out chracter create button
-                createChampButt.Opacity = 0.25;                
+                createChampButt.Opacity = 0.25;
+                createChampButt.Text = "List is Full";
             }//end if
             
             
@@ -48,11 +53,11 @@ namespace tableTopHelp
             deleteChampButt.Clicked += OnButtonDeleteClicked;
 
             // Set label text to champion names
-            championOne.Text = championsList.names[0];
-            championTwo.Text = championsList.names[1];
-            championThree.Text = championsList.names[2];
-            championFour.Text = championsList.names[3];
-            championFive.Text = championsList.names[4];
+            championOne.Text = championsList.championArray[0].name;
+            championTwo.Text = championsList.championArray[1].name;
+            championThree.Text = championsList.championArray[2].name;
+            championFour.Text = championsList.championArray[3].name;
+            championFive.Text = championsList.championArray[4].name;
 
             // Actions for "Select" button clicks, 1-5
             selectChampOne.Clicked += OnButtonOneClicked;
@@ -62,7 +67,9 @@ namespace tableTopHelp
         } // end MainPage
         public class ChampionList
         {
-            public String[] names { get; set; }
+            public App.Champion[] championArray;
+            public App.Champion temporaryChampion;
+            
             public int length { get; set; }
             public int[] levels { get; set; }
             public String[] races { get; set; }
@@ -71,44 +78,57 @@ namespace tableTopHelp
             
             public ChampionList()
             {
-                names = new string[] { "Brumal Orc-Killer",
-                                       "Magda the Confessor",
-                                       "Kelgen IronShield",
-                                       "Mufasa Dingred",
-                                       ""};
-                length = names.Length;
-                levels = new int[] {0,0,0,0,0};
-                races = new String[] { "","","","",""};
+                championArray = new App.Champion[] { new App.Champion("Create New Character"), new App.Champion("Create New Character"),
+                                                     new App.Champion("Create New Character"), new App.Champion("Create New Character"),
+                                                    new App.Champion("Create New Character") };
+                temporaryChampion = new App.Champion();
+           
+                length = championArray.Length;                
                 isSelected = new Boolean[] { false, false, false, false, false };
                 numChampions = 0;
                 
                 for(int i = 0; i < length; i++)
                 {
-                    if (names[i] != "")
+                    if (championArray[i].name != "Create New Character")
                         numChampions++;
                 }
 
             }//End constructor
 
-            public void addChampion(String name, int level, String race)
+            public void addChampion(String newChampion)
             {
                 // check if full
-                if (length < 5)
+                if (numChampions < 5)
                 {
-                    for (int i = 0; i < length; i++)
-                    {
-                        if (names[i].Equals(""))
-                        {
-                            names[i] = name;
-                            levels[i] = level;
-                            races[i] = race;
-                            i = length + 1;
-                        }//End if
-                    }//End for
+                    championArray[numChampions] = new App.Champion(newChampion);
+                    numChampions++;
                 }//end if
                 
             }//end addChampion
 
+
+            public void removeChampion(int index)
+            {
+                numChampions--;
+                championArray[index] = new App.Champion("Create New Character");
+                for(int x = 0,y = 1; x < championArray.Length-1; x++, y++)
+                {
+                    //compare each
+                    if(championArray[x].name.Equals("Create New Character") && !championArray[y].name.Equals("Create New Character"))
+                    {
+                        temporaryChampion = championArray[y];
+                        championArray[y] = championArray[x];
+                        championArray[x] = temporaryChampion;
+                        temporaryChampion = new App.Champion();
+                    }
+                }
+
+                // Set label text to champion names
+            
+
+
+
+            }//end addChampion
             public void selectChampion(int index)
             {
                 for(int i = 0; i<length; i++)
@@ -131,36 +151,103 @@ namespace tableTopHelp
         //Create
         async void OnButtonCreateClicked(object sender, EventArgs e)
         {
-            // check for grey-out
+            
+
             if (championsList.numChampions >= 5)
             {
-                DisplayAlert("Error", "You've reached the maximum number of characters. Please delete a character to continue.", "OK");
+                await DisplayAlert("Error", "You've reached the maximum number of characters. Please delete a character to continue.", "OK");
             }//end if
+
+            try
+            {
+                if(!input.Text.Equals(""))
+                { 
+                    championsList.addChampion(input.Text);
+                    input.Text = "";                   
+                }
+            }
+
+            catch
+            {
+                await DisplayAlert("Error", "You must type a new champion name.", "OK");
+            }
+
+
+            if (championsList.numChampions >= 5)
+            {
+                createChampButt.Opacity = 0.25;
+                createChampButt.Text = "List is Full";
+            }
             else
             {
-                var createResponse = await DisplayAlert("Create Character", "Do you want to create a new character?", "Yes", "No");
+                createChampButt.Opacity = 1;
+                createChampButt.Text = "Create Champion";
+            }
 
-                if (createResponse)
-                {
-                    createChampButt.BackgroundColor = Color.Green;
-                    createIsSelected = true;
-                }//end if
-            }//end else
-            
+            // Set label text to champion names
+            championOne.Text = championsList.championArray[0].name;
+            championTwo.Text = championsList.championArray[1].name;
+            championThree.Text = championsList.championArray[2].name;
+            championFour.Text = championsList.championArray[3].name;
+            championFive.Text = championsList.championArray[4].name;
+
         }// end OnButtonCreateClicked
 
         // Delete
         async void OnButtonDeleteClicked(object sender, EventArgs e)
         {
-            var deleteResponse = await DisplayAlert("Delete Champion", "Are you sure?", "Yes", "No");
+            var deleteChampionFound = false;
+            var deleteResponse = false;
+            var championDeleteIndex = -1;
+
+            
+
+            for(int i = 0; i < championsList.length; i++)
+            {
+                try
+                {
+                    if(!deleteChampionFound && input.Text.Equals(championsList.championArray[i].name) &&
+                                           !championsList.championArray[i].name.Equals("Create New Character"))
+                    {
+                        deleteResponse = await DisplayAlert("Delete Champion", "Do you want to delete " + 
+                                                  championsList.championArray[i].name + "?", "Yes", "No");
+                        deleteChampionFound = true;
+                        championDeleteIndex = i;
+                    }
+                }
+
+                catch
+                {
+                    DisplayAlert("Error", "You must type a champion name to be deleted.", "Ok.");
+                    i = championsList.length + 1;
+                    input.Text = null;
+                }
+            }
+
+            if(!deleteChampionFound && championDeleteIndex != -1)
+            {
+                DisplayAlert("Error", "There is no champion named " + input.Text, "OK");
+                input.Text = null;
+            }
+           
 
             if (deleteResponse)
             {
-                deleteChampButt.BackgroundColor = Color.Red;
-                deleteIsSelected = true;
-                DisplayAlert("Instructions", "Select a Champion to Delete", "Ok");
+                await DisplayAlert("Instructions", championsList.championArray[championDeleteIndex].name + 
+                                                   " is about to be deleted.", "Ok");
+                championsList.removeChampion(championDeleteIndex);
+                createChampButt.Text = "Create Champion";
+                createChampButt.Opacity = 1.0;   
+                input.Text = null;                         
+                
 
             }
+            // Set label text to champion names
+            championOne.Text = championsList.championArray[0].name;
+            championTwo.Text = championsList.championArray[1].name;
+            championThree.Text = championsList.championArray[2].name;
+            championFour.Text = championsList.championArray[3].name;
+            championFive.Text = championsList.championArray[4].name;
 
         }
         async void OnButtonOneClicked(object sender, EventArgs e)

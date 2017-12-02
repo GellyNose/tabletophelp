@@ -119,6 +119,12 @@ namespace tableTopHelp
 
             }// public Champion()
 
+            public Champion(String inputName)
+            {
+                name = inputName;
+                level = 1;
+            }
+
             public void spendHealthPoint()
             {
                 // if point is available

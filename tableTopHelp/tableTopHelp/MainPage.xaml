@@ -26,6 +26,8 @@
              </Grid>
             <!-- StackLayout for list of Champions -->
              <StackLayout VerticalOptions="Center" Padding="10" Spacing="50">
+                <Entry Placeholder="Champion Name" HorizontalOptions="Center" x:Name="input"/>
+                 
                 <Grid RowSpacing="40">
                     
                     
