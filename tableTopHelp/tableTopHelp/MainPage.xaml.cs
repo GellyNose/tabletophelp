@@ -9,7 +9,7 @@ namespace tableTopHelp
 {
     public partial class MainPage : ContentPage
     {
-        // create champion list, get/set (name,level,race,selected), CREATE SHIT HERE, JORDAN!!
+       
         public ChampionList championsList = new ChampionList();
         public Boolean createIsSelected = false,
                         deleteIsSelected = false;
@@ -20,10 +20,13 @@ namespace tableTopHelp
         public App.Champion mufasa = new App.Champion("Mufasa");
         public App.Champion magda = new App.Champion("Magda");
 
-        // This is the MOTHER FUCKING CONSTRUCTOR FOR MAINPAGE, NOT A RUN METHOD.... JORDAN... 3 HOURS LOST FOREVER!!!
+        
         public MainPage()
-        {
+        {       
+                       
             InitializeComponent();
+            
+
             // Set BindingContext for this page to access buttons and labels from XAML
             BindingContext = this;
             

@@ -3,10 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:tableTopHelp"
              x:Class="tableTopHelp.MainPage"
+             BackgroundImage="http://www.myfreetextures.com/wp-content/uploads/2013/07/old-brown-vintage-parchment-paper-texture.jpg"
    Title="Testing...">
-   
-    <ContentPage.Content>   
-            
+    
+    
+    <ContentPage.Content>
+        
          <!-- main StackLayout for Screen -->
         <StackLayout HorizontalOptions="CenterAndExpand">
             
