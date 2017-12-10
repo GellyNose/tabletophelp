@@ -9,7 +9,7 @@ namespace tableTopHelp
 {
     public partial class MainPage : ContentPage
     {
-       
+        //Champion List Object: array of "Champion" objects
         public ChampionList championsList = new ChampionList();
         public Boolean createIsSelected = false,
                         deleteIsSelected = false;
@@ -19,7 +19,11 @@ namespace tableTopHelp
         public App.Champion winter = new App.Champion("Winter Star");
         public App.Champion mufasa = new App.Champion("Mufasa");
         public App.Champion magda = new App.Champion("Magda");
-
+        public Label[] championLabels = new Label[5];
+        public static int MAX_CHAMPION_COUNT = 5;
+        public static double OPACITY_LOW_VALUE = 0.25;
+        public static double OPACITY_HIGH_VALUE = 1.0;
+        
         
         public MainPage()
         {       
@@ -32,10 +36,10 @@ namespace tableTopHelp
             
            
             // Actions for "Create" button clicked
-            if (championsList.numChampions == 5)
+            if (championsList.numChampions == MAX_CHAMPION_COUNT)
             {
                 // grey-out chracter create button
-                createChampButt.Opacity = 0.25;
+                createChampButt.Opacity = OPACITY_LOW_VALUE;
                 createChampButt.Text = "List is Full";
             }//end if
             
@@ -50,13 +54,22 @@ namespace tableTopHelp
 
             // Actions for "Delete" button clicked
             deleteChampButt.Clicked += OnButtonDeleteClicked;
+            championLabels[0] = championOne;
+            championLabels[1] = championTwo;
+            championLabels[2] = championThree;
+            championLabels[3] = championFour;
+            championLabels[4] = championFive;
 
+            for(int i = 0; i< championLabels.Length; i++)
+            {
+                championLabels[i].Text = championsList.championArray[i].name + "\rLVL - " + championsList.championArray[i].level.ToString();
+            }
             // Set label text to champion names
-            championOne.Text = championsList.championArray[0].name + "\rLVL - " + championsList.championArray[0].level.ToString();
-            championTwo.Text = championsList.championArray[1].name + "\rLVL - " + championsList.championArray[1].level.ToString();
-            championThree.Text = championsList.championArray[2].name + "\rLVL - " + championsList.championArray[2].level.ToString();
-            championFour.Text = championsList.championArray[3].name + "\rLVL - " + championsList.championArray[3].level.ToString();
-            championFive.Text = championsList.championArray[4].name + "\rLVL - " + championsList.championArray[4].level.ToString();
+            championOne = championLabels[0];
+            championTwo = championLabels[1];
+            championThree = championLabels[2];
+            championFour = championLabels[3];
+            championFive = championLabels[4];
 
             // Actions for "Select" button clicks, 1-5
             selectChampOne.Clicked += OnButtonOneClicked;
@@ -67,6 +80,7 @@ namespace tableTopHelp
         public class ChampionList
         {
             public App.Champion[] championArray;
+            // Temporary Champion for sorting
             public App.Champion temporaryChampion;
             
             public int length { get; set; }
@@ -84,13 +98,8 @@ namespace tableTopHelp
            
                 length = championArray.Length;                
                 isSelected = new Boolean[] { false, false, false, false, false };
-                numChampions = 0;
+                numChampions = 0;             
                 
-                for(int i = 0; i < length; i++)
-                {
-                    if (championArray[i].name != "Create New Character")
-                        numChampions++;
-                }
 
             }//End constructor
 
@@ -124,14 +133,9 @@ namespace tableTopHelp
                         championArray[x] = temporaryChampion;
                         temporaryChampion = new App.Champion();
                     }
-                }
-
-                // Set label text to champion names
-            
-
-
-
+                }      
             }//end addChampion
+
             public void selectChampion(int index)
             {
                 for(int i = 0; i<length; i++)
@@ -156,43 +160,41 @@ namespace tableTopHelp
         {
             
 
-            if (championsList.numChampions >= 5)
+            if (championsList.numChampions >= MAX_CHAMPION_COUNT)
             {
                 await DisplayAlert("Error", "You've reached the maximum number of characters. Please delete a character to continue.", "OK");
             }//end if
 
-            try
-            {
-                if(!input.Text.Equals(""))
-                { 
-                    championsList.addChampion(input.Text);
-                    input.Text = "";                   
-                }
-            }
-
-            catch
+            
+            if(!input.Text.Equals(""))
+            { 
+                championsList.addChampion(input.Text);
+                input.Text = "";                   
+            }  // End if (!input.Text.Equals(""))  
+            else if(input.Text.Equals(""))
             {
                 await DisplayAlert("Error", "You must type a new champion name.", "OK");
-            }
+            }// End else if(input.Text.Equals(""))
 
 
-            if (championsList.numChampions >= 5)
+            if (championsList.numChampions >= MAX_CHAMPION_COUNT)
             {
-                createChampButt.Opacity = 0.25;
+                createChampButt.Opacity = OPACITY_LOW_VALUE;
                 createChampButt.Text = "List is Full";
             }
             else
             {
-                createChampButt.Opacity = 1;
+                createChampButt.Opacity = OPACITY_HIGH_VALUE;
                 createChampButt.Text = "Create Champion";
             }
 
-            // Set label text to champion names
-            championOne.Text = championsList.championArray[0].name + "\rLVL - " + championsList.championArray[0].level.ToString();
-            championTwo.Text = championsList.championArray[1].name + "\rLVL - " + championsList.championArray[1].level.ToString();
-            championThree.Text = championsList.championArray[2].name + "\rLVL - " + championsList.championArray[2].level.ToString();
-            championFour.Text = championsList.championArray[3].name + "\rLVL - " + championsList.championArray[3].level.ToString();
-            championFive.Text = championsList.championArray[4].name + "\rLVL - " + championsList.championArray[4].level.ToString();
+            // Set label text to champion names            
+                championOne.Text = championsList.championArray[0].name + "\rLVL - " + championsList.championArray[0].level.ToString();
+                championTwo.Text = championsList.championArray[1].name + "\rLVL - " + championsList.championArray[1].level.ToString();
+                championThree.Text = championsList.championArray[2].name + "\rLVL - " + championsList.championArray[2].level.ToString();
+                championFour.Text = championsList.championArray[3].name + "\rLVL - " + championsList.championArray[3].level.ToString();
+                championFive.Text = championsList.championArray[4].name + "\rLVL - " + championsList.championArray[4].level.ToString();
+       
 
         }// end OnButtonCreateClicked
 
@@ -215,7 +217,7 @@ namespace tableTopHelp
                 //try-catch for null input
                 try
                 {
-                    // "if champion isnt found, AND text at this spoke equals input, AND input isn't basic constructor name"
+                    // "if champion isnt found, AND text at this index equals input, AND input isn't basic constructor name"
                     if(!deleteChampionFound && input.Text.Equals(championsList.championArray[i].name) &&
                                            !championsList.championArray[i].name.Equals("Create New Character"))
                     {
@@ -237,10 +239,10 @@ namespace tableTopHelp
                     input.Text = "";
                 }
             }
-            // "if champion is not found, AND champion index isnt original number:
+            // "if champion is not found, AND text does not equal blank:
             if(!deleteChampionFound && !input.Text.Equals(""))
             {
-                DisplayAlert("Error", "There is no champion named " + input.Text, "OK");
+                DisplayAlert("Error", "There is no champion named " + input.Text +".", "OK");
                 input.Text = "";
             }
            
@@ -254,20 +256,20 @@ namespace tableTopHelp
                 championsList.removeChampion(championDeleteIndex);
                 // reset create button, in case it was set to "full"
                 createChampButt.Text = "Create Champion";
-                createChampButt.Opacity = 1.0;   
+                createChampButt.Opacity = OPACITY_HIGH_VALUE;   
                 input.Text = "";                         
             }
             else
             {
-                if (championsList.numChampions >= 5)
+                if (championsList.numChampions >= MAX_CHAMPION_COUNT)
                 {
-                    createChampButt.Opacity = 0.25;
+                    createChampButt.Opacity = OPACITY_LOW_VALUE;
                     createChampButt.Text = "List is Full";
                     input.Text = "";
                 }
                 else
                 {
-                    createChampButt.Opacity = 1;
+                    createChampButt.Opacity = OPACITY_HIGH_VALUE;
                     createChampButt.Text = "Create Champion";
                     input.Text = "";
                 }
@@ -286,6 +288,10 @@ namespace tableTopHelp
             if (!createIsSelected && !deleteIsSelected)
             {
                 // STUB - load champion
+                CharacterPage charSheet = new CharacterPage ();
+                await Navigation.PushAsync(charSheet);
+                // MainPage = new tableTopHelp.MainPage();
+
                 championOne.Text = "Selected";
                 championsList.isSelected[0] = true;
             }
