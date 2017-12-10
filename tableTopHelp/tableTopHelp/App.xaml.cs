@@ -123,6 +123,9 @@ namespace tableTopHelp
             {
                 name = inputName;
                 level = 1;
+                guardian = "Warrior";
+                race = "Nord";
+
             }
 
             public void spendHealthPoint()

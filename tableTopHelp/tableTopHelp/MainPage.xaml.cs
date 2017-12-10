@@ -288,7 +288,7 @@ namespace tableTopHelp
             if (!createIsSelected && !deleteIsSelected)
             {
                 // STUB - load champion
-                CharacterPage charSheet = new CharacterPage ();
+                CharacterPage charSheet = new CharacterPage(championsList.championArray[0]);
                 await Navigation.PushAsync(charSheet);
                 // MainPage = new tableTopHelp.MainPage();
 

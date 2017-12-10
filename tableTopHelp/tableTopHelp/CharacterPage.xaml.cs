@@ -12,9 +12,11 @@ namespace tableTopHelp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CharacterPage : ContentPage
     {
-        public CharacterPage()
+        public CharacterPage(App.Champion champion)
         {
             InitializeComponent();
+
+            this.Title = champion.name + ":" + " " + champion.race + " " + champion.guardian + " Lvl " + champion.level;
         }
     }
 }
