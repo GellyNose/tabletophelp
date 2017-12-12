@@ -170,7 +170,7 @@ namespace tableTopHelp
             }//end if
 
             
-            if(!input.Text.Equals("") && input.Text.Length <= 16)
+            if(!input.Text.Equals("") && input.Text.Length <= 25)
             { 
                 championsList.addChampion(input.Text);
                 input.Text = "";                   
@@ -179,9 +179,9 @@ namespace tableTopHelp
             {
                 await DisplayAlert("Error", "You must type a new champion name.", "OK");
             }// End else if(input.Text.Equals(""))
-            else if (input.Text.Length >= 16)
+            else if (input.Text.Length >= 25)
             {
-                await DisplayAlert("Error", "Your champion name must be 16 characters or less. You are " + (input.Text.Length - 16) + " characters over." , "OK");
+                await DisplayAlert("Error", "Your champion name must be 25 characters or less. You are " + (input.Text.Length - 25) + " characters over." , "OK");
             }// End else if(input.Text.Equals(""))
 
 
