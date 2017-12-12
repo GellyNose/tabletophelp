@@ -6,10 +6,10 @@
         <ContentPage.Content>
 
             <!-- main StackLayout for Screen -->
-        <StackLayout HorizontalOptions="CenterAndExpand">
-
-            <!-- Grid for horizontal buttons -->
-            <Grid>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+            <Entry x:Name="userInput" Placeholder="Entry" HorizontalOptions="FillAndExpand"/>
+            <!-- Grid for horizontal buttons -->            
+            <Grid HorizontalOptions="CenterAndExpand" x:Name="topGrid" RowSpacing="0">
                 <!-- Column definitions, set width to dynamic w/ fill -->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -18,17 +18,26 @@
                     
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="40"/>                   
+                    <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
-                <Image Source="https://upload.wikimedia.org/wikipedia/en/thumb/9/9c/Test-map-peakp-black.svg/200px-Test-map-peakp-black.svg.png"
-                       Grid.Column="0" Grid.Row="0"/>
-                <Label Text="AP" x:Name="aPlabel" Grid.Column="1" Grid.Row="0"/>
-                <Label Text="Move" x:Name="moveLabel" Grid.Column="2" Grid.Row="0"/>
-                <Button Text="roll" x:Name="initButton" Grid.Column="1" Grid.Row="1"/>
-                <Label Text="Initiative" x:Name="initLabel" Grid.Column="2" Grid.Row="1"/>
+                <Frame  Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Padding="0,0,0,0" VerticalOptions="Center">
+                    <Image x:Name="image" Source="https://upload.wikimedia.org/wikipedia/en/thumb/9/9c/Test-map-peakp-black.svg/200px-Test-map-peakp-black.svg.png"             
+                        HorizontalOptions="Center" VerticalOptions="Center"  BackgroundColor="White" Aspect="AspectFill"/>
+
+
+                </Frame>
+
+                <!-- -->
+                <Label Text="AP" x:Name="aPlabel" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" />
+                <Label Text="Move" x:Name="moveLabel" Grid.Column="2" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Frame OutlineColor="Black" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Padding="0,0,0,0" Grid.ColumnSpan="2">
+                    <Button Text="Roll Initiative" x:Name="initButton" HorizontalOptions="CenterAndExpand"/>
+                </Frame>               
+                
+                
             </Grid>
-            <Grid>
+            <Grid >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -36,11 +45,11 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Button Text="Hit" x:Name="hitButton" Grid.Column="0" Grid.Row="0" BackgroundColor="Red"/>
+                <Button Text="Hit" x:Name="hitButton" Grid.Column="0" Grid.Row="0" BackgroundColor="Red" />
                 <Button Text="Heal" x:Name="healButton" Grid.Column="1" Grid.Row="0" BackgroundColor="Red"/>
                 <Label Text="100/100" x:Name="healthLabel" Grid.Column="2" Grid.Row="0" TextColor="Red" HorizontalOptions="CenterAndExpand"/>
                 <Label Text="100%" x:Name="healthPercentLabel" Grid.Column="3" Grid.Row="0" TextColor="Red" HorizontalOptions="CenterAndExpand"/>
@@ -55,7 +64,7 @@
                 <Label Text="100/100" x:Name="staminaLabel" Grid.Column="2" Grid.Row="2" TextColor="Green" HorizontalOptions="CenterAndExpand"/>
                 <Label Text="100%" x:Name="staminaPercentLabel" Grid.Column="3" Grid.Row="2" TextColor="Green" HorizontalOptions="CenterAndExpand"/>
             </Grid>
-            <Grid>
+            <Grid VerticalOptions="Fill">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -74,7 +83,7 @@
                 <Button Text="Inventory" x:Name="inventoryButton" Grid.Column="0" Grid.Row="2" BackgroundColor="LightBlue"/>
                 <Button Text="Map" x:Name="mapButton" Grid.Column="1" Grid.Row="2" BackgroundColor="LightBlue"/>
             </Grid>
-
+            
 
 
         </StackLayout>

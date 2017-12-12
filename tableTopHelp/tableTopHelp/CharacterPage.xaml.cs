@@ -15,8 +15,25 @@ namespace tableTopHelp
         public CharacterPage(App.Champion champion)
         {
             InitializeComponent();
-
+            
             this.Title = champion.name + ":" + " " + champion.race + " " + champion.guardian + " Lvl " + champion.level;
+
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.NumberOfTapsRequired = 2;
+            tapGestureRecognizer.Tapped += (s, e) => {
+                DisplayAlert("Tapped", "Tapped Image", "OK");
+                image.Source = userInput.Text;
+                
+                
+
+                
+                
+            };
+            image.GestureRecognizers.Add(tapGestureRecognizer);
         }
+
+        
+
     }
+    
 }
