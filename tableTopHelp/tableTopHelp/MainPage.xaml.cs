@@ -28,9 +28,10 @@ namespace tableTopHelp
         public MainPage()
         {       
                        
-            InitializeComponent();
-            
+            InitializeComponent();    
 
+
+           
             // Set BindingContext for this page to access buttons and labels from XAML
             BindingContext = this;
             
@@ -71,12 +72,15 @@ namespace tableTopHelp
             championFour = championLabels[3];
             championFive = championLabels[4];
 
+            
             // Actions for "Select" button clicks, 1-5
             selectChampOne.Clicked += OnButtonOneClicked;
-          
+            selectChampTwo.Clicked += OnButtonTwoClicked;
 
            
         } // end MainPage
+
+        
         public class ChampionList
         {
             public App.Champion[] championArray;
@@ -166,7 +170,7 @@ namespace tableTopHelp
             }//end if
 
             
-            if(!input.Text.Equals(""))
+            if(!input.Text.Equals("") && input.Text.Length <= 16)
             { 
                 championsList.addChampion(input.Text);
                 input.Text = "";                   
@@ -174,6 +178,10 @@ namespace tableTopHelp
             else if(input.Text.Equals(""))
             {
                 await DisplayAlert("Error", "You must type a new champion name.", "OK");
+            }// End else if(input.Text.Equals(""))
+            else if (input.Text.Length >= 16)
+            {
+                await DisplayAlert("Error", "Your champion name must be 16 characters or less. You are " + (input.Text.Length - 16) + " characters over." , "OK");
             }// End else if(input.Text.Equals(""))
 
 
@@ -285,34 +293,75 @@ namespace tableTopHelp
         async void OnButtonOneClicked(object sender, EventArgs e)
         {
             // Check for create
-            if (!createIsSelected && !deleteIsSelected)
+            if (!championsList.championArray[0].name.Equals("Create New Character"))
             {
                 // STUB - load champion
                 CharacterPage charSheet = new CharacterPage(championsList.championArray[0]);
                 await Navigation.PushAsync(charSheet);
-                // MainPage = new tableTopHelp.MainPage();
-
-                championOne.Text = "Selected";
+                // MainPage = new tableTopHelp.MainPage();               
                 championsList.isSelected[0] = true;
-            }
-
-            else if (createIsSelected)
-            {                
-                
-            }
-
-            else if (deleteChampButt.BackgroundColor.Equals(Color.Red))
-            {
-                championOne.Text = "DELETED";
-                deleteChampButt.BackgroundColor = Color.Default;
-            }
-            
-            
+                image1.Source = championsList.championArray[0].profileImage;
+            } 
         }
 
-        
+        async void OnButtonTwoClicked(object sender, EventArgs e)
+        {
+            // Check for create
+            if (!championsList.championArray[1].name.Equals("Create New Character"))
+            {
+                // STUB - load champion
+                CharacterPage charSheet = new CharacterPage(championsList.championArray[1]);
+                await Navigation.PushAsync(charSheet);
+                // MainPage = new tableTopHelp.MainPage();               
+                championsList.isSelected[1] = true;
+                image2.Source = championsList.championArray[1].profileImage;
+            }
+        }
+        async void OnButtonThreeClicked(object sender, EventArgs e)
+        {
+            // Check for create
+            if (!championsList.championArray[2].name.Equals("Create New Character"))
+            {
+                // STUB - load champion
+                CharacterPage charSheet = new CharacterPage(championsList.championArray[2]);
+                await Navigation.PushAsync(charSheet);
+                // MainPage = new tableTopHelp.MainPage();               
+                championsList.isSelected[2] = true;
+                image3.Source = championsList.championArray[2].profileImage;
+            }
+        }
 
-       
+        async void OnButtonFourClicked(object sender, EventArgs e)
+        {
+            // Check for create
+            if (!championsList.championArray[3].name.Equals("Create New Character"))
+            {
+                // STUB - load champion
+                CharacterPage charSheet = new CharacterPage(championsList.championArray[3]);
+                await Navigation.PushAsync(charSheet);
+                // MainPage = new tableTopHelp.MainPage();               
+                championsList.isSelected[3] = true;
+                image4.Source = championsList.championArray[3].profileImage;
+            }
+        }
+
+        async void OnButtonFiveClicked(object sender, EventArgs e)
+        {
+            // Check for create
+            if (!championsList.championArray[4].name.Equals("Create New Character"))
+            {
+                // STUB - load champion
+                CharacterPage charSheet = new CharacterPage(championsList.championArray[4]);
+                await Navigation.PushAsync(charSheet);
+                // MainPage = new tableTopHelp.MainPage();               
+                championsList.isSelected[4] = true;
+                image5.Source = championsList.championArray[4].profileImage;
+            }
+        }
+
+
+
+
     }
 
     

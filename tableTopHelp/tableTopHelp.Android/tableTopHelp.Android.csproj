@@ -145,13 +145,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\bg.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\drawable-hdpi\nordWarrior.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\nordWarrior.jpg" />
+    <AndroidResource Include="Resources\nordwarrior.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Animated.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.25.4.0.2\build\MonoAndroid70\Xamarin.Android.Support.Animated.Vector.Drawable.targets')" />

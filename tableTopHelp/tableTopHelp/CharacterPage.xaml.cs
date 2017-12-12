@@ -17,13 +17,24 @@ namespace tableTopHelp
             InitializeComponent();
             
             this.Title = champion.name + ":" + " " + champion.race + " " + champion.guardian + " Lvl " + champion.level;
-
+            userInput.Text = "";
+            image.Source = champion.profileImage;
             var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.NumberOfTapsRequired = 2;
             tapGestureRecognizer.Tapped += (s, e) => {
-                DisplayAlert("Tapped", "Tapped Image", "OK");
-                image.Source = userInput.Text;
-                
+                DisplayAlert("Change Profile Picture", "Profile Picture Changed!", "OK");
+                if (!userInput.Text.Equals(""))
+                {
+                    champion.profileImage = userInput.Text;
+                    image.Source = champion.profileImage;
+                    
+                }
+                else
+                {
+                    champion.profileImage = "noavatar.png";
+                    image.Source = champion.profileImage;
+                    
+                }
                 
 
                 
@@ -38,18 +49,13 @@ namespace tableTopHelp
 
             
 
-            var tapGestureRecognizer = new TapGestureRecognizer();
-            tapGestureRecognizer.NumberOfTapsRequired = 2;
-            tapGestureRecognizer.Tapped += (s, e) => {
+            var imageTap = new TapGestureRecognizer();
+            imageTap.NumberOfTapsRequired = 2;
+            imageTap.Tapped += (s, e) => {
                 DisplayAlert("Tapped", "Tapped Image", "OK");
                 image.Source = userInput.Text;
-
-
-
-
-
             };
-            image.GestureRecognizers.Add(tapGestureRecognizer);
+            image.GestureRecognizers.Add(imageTap);
         }
 
         

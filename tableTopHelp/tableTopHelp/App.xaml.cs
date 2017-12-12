@@ -41,6 +41,7 @@ namespace tableTopHelp
             public int level { get; set; }
             public String role { get; set; }
             public String guardian { get; set; }
+            public string profileImage { get; set; }
 
             // Health values
             public int maxHP { get; set; }
@@ -117,6 +118,7 @@ namespace tableTopHelp
             public Champion()
             {
                 name = "Create New Character";
+                profileImage = "noavatar.png";
             }// public Champion()
 
             public Champion(String inputName)
@@ -125,6 +127,7 @@ namespace tableTopHelp
                 level = 1;
                 guardian = "Warrior";
                 race = "Nord";
+                profileImage = "noavatar.png";
 
             }
 

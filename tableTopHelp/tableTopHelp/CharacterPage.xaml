@@ -2,41 +2,40 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="tableTopHelp.CharacterPage"
-            BackgroundImage="http://www.myfreetextures.com/wp-content/uploads/2013/07/old-brown-vintage-parchment-paper-texture.jpg">
+            BackgroundImage="bg.jpg"
+            Title="Character Sheet">
         <ContentPage.Content>
-        <ScrollView>
-            <!-- main StackLayout for Screen -->
-        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+        <!--Enables user scroll of content within ScrollView-->
+        <ScrollView> 
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
             <Entry x:Name="userInput" Placeholder="Entry" HorizontalOptions="FillAndExpand"/>
             <!-- Grid for horizontal buttons -->            
-            <Grid HorizontalOptions="CenterAndExpand" x:Name="topGrid" RowSpacing="0">
+            <Grid HorizontalOptions="CenterAndExpand" x:Name="topGrid" RowSpacing="0" Margin="0,10">
                 <!-- Column definitions, set width to dynamic w/ fill -->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    
+                    <ColumnDefinition Width="*"/>                    
                 </Grid.ColumnDefinitions>
+                <!-- Row definitions, set height to 40+40 to bound image -->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>                   
                     <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
+                <!-- Frame Image to force aspect fill of bound size-->
                 <Frame  Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Padding="0,0,0,0" VerticalOptions="Center">
-                    <Image x:Name="image" Source="https://upload.wikimedia.org/wikipedia/en/thumb/9/9c/Test-map-peakp-black.svg/200px-Test-map-peakp-black.svg.png"             
-                        HorizontalOptions="Center" VerticalOptions="Center"  BackgroundColor="White" Aspect="AspectFill"/>
-
-
+                    <Image x:Name="image" Source="noavatar.png"             
+                        HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill"/>
                 </Frame>
-
-                <!-- -->
+                <!-- Labels and Buttons for AP, MOVE, and INITIATIVE -->
                 <Label Text="AP" x:Name="aPlabel" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" />
                 <Label Text="Move" x:Name="moveLabel" Grid.Column="2" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <!--Frame Initiative button-->
                 <Frame OutlineColor="Black" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Padding="0,0,0,0" Grid.ColumnSpan="2">
                     <Button Text="Roll Initiative" x:Name="initButton" HorizontalOptions="CenterAndExpand"/>
-                </Frame>               
-                
-                
+                </Frame>
             </Grid>
+            <!--Grid for HP, MAG, and STAM hits, rest, and abilities-->   
             <Grid >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -48,21 +47,34 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Button Text="Hit" x:Name="hitButton" Grid.Column="0" Grid.Row="0" BackgroundColor="Red" />
-                <Button Text="Heal" x:Name="healButton" Grid.Column="1" Grid.Row="0" BackgroundColor="Red"/>
-                <Label Text="100/100" x:Name="healthLabel" Grid.Column="2" Grid.Row="0" TextColor="Red" HorizontalOptions="CenterAndExpand"/>
-                <Label Text="100%" x:Name="healthPercentLabel" Grid.Column="3" Grid.Row="0" TextColor="Red" HorizontalOptions="CenterAndExpand"/>
-                
-                <Button Text="Spell" x:Name="spellButton" Grid.Column="0" Grid.Row="1" BackgroundColor="Blue"/>
-                <Button Text="Rest" x:Name="restMagickaButton" Grid.Column="1" Grid.Row="1" BackgroundColor="Blue"/>
-                <Label Text="100/100" x:Name="magickaLabel" Grid.Column="2" Grid.Row="1" TextColor="Blue" HorizontalOptions="CenterAndExpand"/>
-                <Label Text="100%" x:Name="magickaPercentLabel" Grid.Column="3" Grid.Row="1" TextColor="Blue" HorizontalOptions="CenterAndExpand"/>
-
-                <Button Text="Attack" x:Name="attackButton" Grid.Column="0" Grid.Row="2" BackgroundColor="Green"/>
-                <Button Text="Rest" x:Name="restStaminaButton" Grid.Column="1" Grid.Row="2" BackgroundColor="Green"/>
-                <Label Text="100/100" x:Name="staminaLabel" Grid.Column="2" Grid.Row="2" TextColor="Green" HorizontalOptions="CenterAndExpand"/>
-                <Label Text="100%" x:Name="staminaPercentLabel" Grid.Column="3" Grid.Row="2" TextColor="Green" HorizontalOptions="CenterAndExpand"/>
+                </Grid.RowDefinitions>                
+                <!--HEALTH-->   
+                <Button Text="Hit" x:Name="hitButton" Grid.Column="0" Grid.Row="0" BackgroundColor="Red" 
+                        VerticalOptions="Center" HorizontalOptions="Fill" />
+                <Button Text="Heal" x:Name="healButton" Grid.Column="1" Grid.Row="0" BackgroundColor="Red"
+                        VerticalOptions="Center" HorizontalOptions="Fill" />
+                <Label Text="100/100" x:Name="healthLabel" Grid.Column="2" Grid.Row="0" TextColor="Red" 
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="Center"  />
+                <Label Text="100%" x:Name="healthPercentLabel" Grid.Column="3" Grid.Row="0" TextColor="Red"
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="Center" FontSize="Medium"/>
+                <!--MAGICKA-->
+                <Button Text="Spell" x:Name="spellButton" Grid.Column="0" Grid.Row="1" BackgroundColor="Blue"
+                        VerticalOptions="Center" HorizontalOptions="Fill" />
+                <Button Text="Rest" x:Name="restMagickaButton" Grid.Column="1" Grid.Row="1" BackgroundColor="Blue"
+                        VerticalOptions="Center" HorizontalOptions="Fill"/>
+                <Label Text="100/100" x:Name="magickaLabel" Grid.Column="2" Grid.Row="1" TextColor="Blue" 
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+                <Label Text="100%" x:Name="magickaPercentLabel" Grid.Column="3" Grid.Row="1" TextColor="Blue" 
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="Center" FontSize="Medium"/>
+                <!--MAGICKA-->
+                <Button Text="Attack" x:Name="attackButton" Grid.Column="0" Grid.Row="2" BackgroundColor="Green"
+                       VerticalOptions="Center" HorizontalOptions="Fill"/>
+                <Button Text="Rest" x:Name="restStaminaButton" Grid.Column="1" Grid.Row="2" BackgroundColor="Green"
+                       VerticalOptions="Center" HorizontalOptions="Fill"/>
+                <Label Text="100/100" x:Name="staminaLabel" Grid.Column="2" Grid.Row="2" TextColor="Green" 
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+                <Label Text="100%" x:Name="staminaPercentLabel" Grid.Column="3" Grid.Row="2" TextColor="Green" 
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="Center" FontSize="Medium"/>
             </Grid>
             <Grid VerticalOptions="Fill">
                 <Grid.ColumnDefinitions>
@@ -74,6 +86,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
+                
                 <Button Text="Skill Checks" x:Name="skillChecksButton" Grid.Column="0" Grid.Row="0" BackgroundColor="LightBlue"/>
                 <Button Text="Talents and Abilities" x:Name="talentsAndAbilitiesButton" Grid.Column="1" Grid.Row="0" BackgroundColor="LightBlue"/>
 
@@ -86,7 +99,7 @@
             
 
 
-        </StackLayout>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
