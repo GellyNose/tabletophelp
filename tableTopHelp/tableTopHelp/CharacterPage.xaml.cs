@@ -32,6 +32,26 @@ namespace tableTopHelp
             image.GestureRecognizers.Add(tapGestureRecognizer);
         }
 
+        public CharacterPage()
+        {
+            InitializeComponent();
+
+            
+
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.NumberOfTapsRequired = 2;
+            tapGestureRecognizer.Tapped += (s, e) => {
+                DisplayAlert("Tapped", "Tapped Image", "OK");
+                image.Source = userInput.Text;
+
+
+
+
+
+            };
+            image.GestureRecognizers.Add(tapGestureRecognizer);
+        }
+
         
 
     }

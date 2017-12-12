@@ -4,7 +4,7 @@
              x:Class="tableTopHelp.CharacterPage"
             BackgroundImage="http://www.myfreetextures.com/wp-content/uploads/2013/07/old-brown-vintage-parchment-paper-texture.jpg">
         <ContentPage.Content>
-
+        <ScrollView>
             <!-- main StackLayout for Screen -->
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
             <Entry x:Name="userInput" Placeholder="Entry" HorizontalOptions="FillAndExpand"/>
@@ -87,5 +87,6 @@
 
 
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -44,7 +44,7 @@
                     <Label Grid.Column="1" Grid.Row="0" x:Name="championOne"    
                          TextColor="Black" 
                          BackgroundColor="White"
-                         FontSize="Large"      
+                              
                          Text="CHAMPION1 XAML STUB"
                          HorizontalOptions="Center"/>
 
@@ -52,8 +52,7 @@
                          Text="Select"/>
                     <Label Grid.Column="1" Grid.Row="1" x:Name="championTwo"          
                          TextColor="Black" 
-                         BackgroundColor="White"
-                         FontSize="Large"
+                         BackgroundColor="White"                         
                         Text="CHAMPION2 XAML STUB"
                         HorizontalOptions="Center"/>
                     <Button Grid.Column ="0" Grid.Row="2" x:Name="selectChampThree"
@@ -61,7 +60,7 @@
                     <Label Grid.Column="1" Grid.Row="2" x:Name="championThree"      
                          TextColor="Black" 
                          BackgroundColor="White"
-                         FontSize="Large"
+                         
                         Text="CHAMPION3 XAML STUB"
                         HorizontalOptions="Center"/>
 
@@ -70,7 +69,7 @@
                     <Label Grid.Column="1" Grid.Row="3" x:Name="championFour"
                          TextColor="Black" 
                          BackgroundColor="White"
-                         FontSize="Large"
+                        
                         Text="CHAMPION4 XAML STUB"
                         HorizontalOptions="Center"/>
 
@@ -79,7 +78,7 @@
                     <Label Grid.Column="1" Grid.Row="4" x:Name="championFive"       
                          TextColor="Black" 
                          BackgroundColor="White"
-                         FontSize="Large"
+                         
                         Text="CHAMPION5 XAML STUB"
                         HorizontalOptions="Center"/>
                 </Grid>
