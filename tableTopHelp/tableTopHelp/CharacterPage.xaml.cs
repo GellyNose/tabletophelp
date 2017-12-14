@@ -88,10 +88,7 @@ namespace tableTopHelp
         public CharacterPage()
         {
             InitializeComponent();
-
-
-
-           
+                      
             
         }
 
