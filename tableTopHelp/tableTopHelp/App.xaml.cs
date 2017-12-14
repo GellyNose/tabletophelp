@@ -51,7 +51,7 @@ namespace tableTopHelp
             public int healthSkillModifier { get; set; }
             public int bonusHPFromModifers { get; set; }
             public int healthModifiersSpent { get; set; }
-            public static int BASE_HP { get; }
+            public int BASE_HP { get; } = 100;
 
             // Magicka values
             public int maxMagicka { get; set; }
@@ -62,7 +62,7 @@ namespace tableTopHelp
            
             public int magickaModifiersSpent { get; set; }
             public int restMagickaAmount { get; set; }
-            public static int BASE_MAGICKA { get; }
+            public int BASE_MAGICKA { get; } = 100;
 
             // Stamina values
             public int maxStamina { get; set; }
@@ -71,17 +71,17 @@ namespace tableTopHelp
             public int staminaSkillModifier { get; set; }
             public int staminaModifiersSpent { get; set; }
             public int bonusStaminaFromModifiers { get; set; }
-            public static int WEIGHT_MULTIPLIER { get; }
+            public int BASE_WEIGHT { get; } = 100; 
             public int maxWeight { get; set; }
             public int currentWeight { get; set; }
             public int restStaminaAmount { get; set; }
-            public static int MOVE_DISTANCE { get; }
+            public int MOVE_DISTANCE { get; } = 5;
             public int moveModifier { get; set; }
             public int initiativeModifier { get; set; }
             public int initiative { get; set; }
-            public static int ACTION_POINTS { get; }
+            public int ACTION_POINTS { get; } = 5;
             public int actionPointsModifier { get; set; }
-            public static int BASE_STAMINA { get; }
+            public int BASE_STAMINA { get; } = 100;
             
             // Defense values
             public int armorSetRating { get; set; }
@@ -101,9 +101,9 @@ namespace tableTopHelp
 
             // Total number of HP, STAM, and MAG points you can spend
             public int attributeModifiersAvailable { get; set; }
-            public static int MAX_LEVEL { get; }
-            public static int MAX_MODIFIER { get; }
-            public static int ATTRIBUTE_POINTS_PER_LEVEL { get; }
+            public int MAX_LEVEL { get; } = 30;
+            public int MAX_MODIFIER { get; } = 10;
+            public int ATTRIBUTE_POINTS_PER_LEVEL { get; } = 10;
 
             public int talentsSpent { get; set; }
             public int talentsAvailable { get; set; }
@@ -129,7 +129,72 @@ namespace tableTopHelp
                 race = "Nord";
                 profileImage = "noavatar.png";
 
-            }
+                /// Health Values
+                maxHP = 100;
+                currentHP = 100;
+                currentHPPercent = 100.0;
+                // 0 - 10
+                healthSkillModifier = 0;
+                bonusHPFromModifers = 0;
+                // 0 - 30
+                healthModifiersSpent = 0;
+                
+
+                // Magicka values
+                maxMagicka = 100;
+                currentMagicka = 100;
+                currentMagickaPercent = 100.0;
+                magickaSkillModifier = 0;
+                bonusMagickaFromModifiers = 0;
+                magickaModifiersSpent = 0;
+                restMagickaAmount = 0;
+                
+
+                // Stamina values
+                maxStamina = 100;
+                currentStamina = 100;
+                currentStaminaPercent = 100.0;
+                staminaSkillModifier = 0;
+                staminaModifiersSpent = 0;
+                bonusStaminaFromModifiers = 0;
+
+                maxWeight = 100;
+                currentWeight = 0;
+                restStaminaAmount = 0;
+
+                moveModifier = 0;
+                initiativeModifier = 0;
+                initiative = 0;
+                actionPointsModifier = 0;
+                // Defense values
+                armorSetRating = 0;
+                armorSetProtection = 0.0;
+                shieldArmorRating = 0;
+                shieldProtection = 0;
+                shieldMagicResistance = 0;
+                magicResistance = 0;
+                electricResistance = 0;
+                fireResistance = 0;
+                frostResistance = 0;
+
+                // Total number of attribute modifier points spent between HP, STAM, and MAG
+                totalModifiersSpent = 0;
+
+
+
+                // Total number of HP, STAM, and MAG points you can spend
+                attributeModifiersAvailable = 0;
+                talentsSpent = 0;
+                talentsAvailable = 0;
+
+                // skill check modifiers
+                strengthModifier = 0;
+                intelligenceModifier = 0;
+                wisdomModifier = 0;
+                dexterityModifier = 0;
+                charismaModifier = 0;
+
+        }
 
             public void spendHealthPoint()
             {

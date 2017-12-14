@@ -32,7 +32,7 @@
                 <Label Text="Move" x:Name="moveLabel" Grid.Column="2" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"/>
                 <!--Frame Initiative button-->
                 <Frame OutlineColor="Black" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Padding="0,0,0,0" Grid.ColumnSpan="2">
-                    <Button Text="Roll Initiative" x:Name="initButton" HorizontalOptions="CenterAndExpand"/>
+                    <Button Text="Roll Initiative" x:Name="initButton" HorizontalOptions="CenterAndExpand" TextColor="DarkGreen" />
                 </Frame>
             </Grid>
             <!--Grid for HP, MAG, and STAM hits, rest, and abilities-->   
